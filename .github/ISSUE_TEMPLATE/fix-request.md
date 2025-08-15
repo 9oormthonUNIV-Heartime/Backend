@@ -2,7 +2,7 @@
 name: Fix request
 about: 새로운 수정 요청을 작성해주세요.
 title: "[FIX] 수정한 기능 설명"
-labels: ''
+labels: fix
 assignees: ''
 
 ---
