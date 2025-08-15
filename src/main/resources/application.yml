@@ -1,4 +1,32 @@
 spring:
-  autoconfigure:
-    exclude:
-      - org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration
+  application:
+    name: heartime
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/local_db?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: admin
+    password: 12345
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+    properties:
+      hibernate:
+        format_sql: true
+        show_sql: true
+    open-in-view: true
+
+server:
+  forward-headers-strategy: framework
+
+springdoc:
+  swagger-ui:
+    path: /api/swagger-ui.html
+    groups-order: desc
+    tags-sorter: alpha
+    operationsSorter: method
+  api-docs:
+    path: /api/v3/api-docs
+  paths-to-match:
+    - /api/**

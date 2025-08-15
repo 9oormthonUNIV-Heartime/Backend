@@ -1,0 +1,68 @@
+name: heartime CI
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch:
+
+# 같은 브랜치에서 동시 실행되면 이전 워크플로 취소
+concurrency:
+  group: heartime-ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1) 소스 체크아웃
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      # 2) JDK 17
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: 'gradle'
+
+      # 3) gradlew 실행권한
+      - name: Grant execute permission for gradlew
+        run: chmod +x ./gradlew
+
+      # 4) application.yml 생성 (Secrets에 Base64로 저장된 값 사용)
+      - name: Create application.yml
+        run: |
+          mkdir -p src/main/resources
+          echo "${{ secrets.APPLICATION_YML_B64 }}" | base64 --decode > src/main/resources/application.yml
+
+      # 5) Gradle 빌드 (jar 생성)
+      - name: Build with Gradle
+        run: ./gradlew --no-daemon clean bootJar
+
+      # 6) 산출물 확인 (선택)
+      - name: List build artifacts
+        run: ls -alh build/libs || true
+
+      # 7) Docker Hub 로그인
+      - name: DockerHub Login
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}   # 예: sseungjun
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}   # 비번 또는 액세스 토큰
+
+      # 8) 이미지 빌드 & 태깅 (리포지토리명: heartime)
+      - name: Build and Tag Docker Image
+        env:
+          IMAGE: ${{ secrets.DOCKERHUB_USERNAME }}/heartime
+        run: |
+          docker build -t $IMAGE:${{ github.sha }} -t $IMAGE:latest .
+
+      # 9) Docker Hub로 Push
+      - name: Push Docker Image
+        env:
+          IMAGE: ${{ secrets.DOCKERHUB_USERNAME }}/heartime
+        run: |
+          docker push $IMAGE:${{ github.sha }}
+          docker push $IMAGE:latest
