@@ -27,6 +27,10 @@ build/
 !**/src/main/**/build/
 !**/src/test/**/build/
 
+# build/libs 안 jar는 예외로 허용
+!build/libs/
+!build/libs/*.jar
+
 # --- STS / Eclipse ---
 .apt_generated
 .classpath
