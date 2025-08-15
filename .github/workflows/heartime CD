@@ -1,0 +1,35 @@
+name: heartime CD
+
+on:
+  workflow_run:
+    workflows: ["heartime CI"]
+    types:
+      - completed
+    branches: [ "main" ]
+
+jobs:
+  deploy:
+    if: ${{ github.event.workflow_run.conclusion == 'success' }}
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Connect & Deploy to EC2
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.EC2_HOST }}
+          username: ${{ secrets.EC2_USER }}
+          key: ${{ secrets.EC2_PRIVATE_KEY }}
+          script: |
+            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/heartime:latest
+
+            # 기존 컨테이너 중지 및 삭제
+            if [ "$(docker ps -q -f name=heartime)" ]; then
+              docker stop heartime
+              docker rm heartime
+            fi
+
+            # 새 컨테이너 실행
+            docker run -d --name heartime -p 8080:8080 ${{ secrets.DOCKERHUB_USERNAME }}/heartime:latest
+
+            # 이전 이미지 정리
+            docker system prune -f
