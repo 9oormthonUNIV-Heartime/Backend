@@ -4,13 +4,13 @@ spring:
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/local_db?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
-    username: admin
-    password: 12345 # 임시비밀번호입니다.
+    url: jdbc:mysql://heartime-db.clgayokw8l5y.ap-northeast-2.rds.amazonaws.com:3306/heartime-db?sslMode=PREFERRED&serverTimezone=Asia/Seoul&characterEncoding=UTF-8
+    username: master
+    password: tmdwns501!
 
   jpa:
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
     properties:
       hibernate:
         format_sql: true
