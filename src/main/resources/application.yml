@@ -1,4 +1,4 @@
-# 바뀔때마다 인코딩해서 actions에 넣기
+# 바뀔때마다 인코딩해서 Actions에 넣기
 spring:
   application:
     name: heartime 
