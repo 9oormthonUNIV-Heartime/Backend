@@ -1,6 +1,7 @@
+# 바뀔때마다 인코딩해서 actions에 넣기
 spring:
   application:
-    name: heartime
+    name: heartime 
 
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
