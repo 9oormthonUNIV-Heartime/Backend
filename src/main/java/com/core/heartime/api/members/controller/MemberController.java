@@ -32,6 +32,8 @@ public class MemberController {
     )
     @PostMapping("/auth/signup")
     public ResponseEntity<ApiResponse<Void>> signup(@Valid @RequestBody SignupRequestDto request) {
+        // valid : 유효성 검사(@NotNull, @Size, @Email 등)
+        // request : dto에 매핑
         memberService.signupMember(request);
 
         return ApiResponse.successOnly(SuccessStatus.MEMBER_SIGNUP_SUCCESS);
