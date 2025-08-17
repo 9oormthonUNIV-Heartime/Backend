@@ -1,6 +1,6 @@
-package com.core.heartime.api.member.jwt;
+package com.core.heartime.api.members.jwt;
 
-import com.core.heartime.api.member.entity.Role;
+import com.core.heartime.api.members.entity.Role;
 import com.core.heartime.common.exception.UnauthorizedException;
 import com.core.heartime.common.response.ErrorStatus;
 import io.jsonwebtoken.*;

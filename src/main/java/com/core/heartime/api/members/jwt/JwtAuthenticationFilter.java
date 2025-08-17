@@ -1,4 +1,4 @@
-package com.core.heartime.api.member.jwt;
+package com.core.heartime.api.members.jwt;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

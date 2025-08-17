@@ -1,4 +1,4 @@
-package com.core.heartime.api.member.jwt;
+package com.core.heartime.api.members.jwt;
 
 import com.core.heartime.common.exception.BaseException;
 import com.core.heartime.common.response.ErrorStatus;

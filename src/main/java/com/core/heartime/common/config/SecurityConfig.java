@@ -1,6 +1,6 @@
 package com.core.heartime.common.config;
 
-import com.core.heartime.api.member.jwt.JwtAuthenticationFilter;
+import com.core.heartime.api.members.jwt.JwtAuthenticationFilter;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -46,7 +46,7 @@ public class SecurityConfig {
                 "/css/**", "/js/**", "/images/**", "/favicon.ico", "/error",
                 "/chat/inbox/**", "/ws/**",
                 // 개발 단계에서 임시 오픈
-                "/api/v1/auth/**", "/api/v1/posts/**", "/api/v1/members/**", "/api/v1/s3/**"
+                "/api/v1/auth/**", "/api/v1/posts/**", "/api/v1/members/**", "/api/v1/s3/**", "/api/v1/health/**"
         };
 
 
