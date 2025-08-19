@@ -36,7 +36,8 @@ public enum SuccessStatus {
     CHAT_OPPONENT_NICKNAME_SUCCESS(HttpStatus.OK, "상대방 닉네임 조회 성공"),
     POST_ID_GET_SUCCESS(HttpStatus.OK, "PostId 조회 성공"),
     POST_AUTHENTICATE_SUCCESS(HttpStatus.OK, "봉사 요청글 인증 성공"),
-
+    LOCATION_UPSERT_SUCCESS(HttpStatus.OK, "내 위치 업데이트 성공"),
+    EMERGENCY_SIGNAL_HANDLED(HttpStatus.OK, "응급 신호 처리에 성공했습니다."),
     /**
      * 201 CREATED
      */

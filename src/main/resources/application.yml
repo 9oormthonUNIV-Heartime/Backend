@@ -18,6 +18,11 @@ spring:
         show_sql: true
     open-in-view: true
 
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
 jwt:
   secret: C+paGTDITAStRisGeK1oBJ+D8yy7riLNwcDJ6TAeV8k=
   expiration: 7200000  # 2시간
