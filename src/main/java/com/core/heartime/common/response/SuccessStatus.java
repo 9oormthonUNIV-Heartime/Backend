@@ -37,7 +37,12 @@ public enum SuccessStatus {
     POST_ID_GET_SUCCESS(HttpStatus.OK, "PostId 조회 성공"),
     POST_AUTHENTICATE_SUCCESS(HttpStatus.OK, "봉사 요청글 인증 성공"),
     LOCATION_UPSERT_SUCCESS(HttpStatus.OK, "내 위치 업데이트 성공"),
-    EMERGENCY_SIGNAL_HANDLED(HttpStatus.OK, "응급 신호 처리에 성공했습니다."),
+    EMERGENCY_SIGNAL_HANDLED(HttpStatus.OK, "응급 신호 처리에 성공"),
+    LOCATION_ME_SUCCESS(HttpStatus.OK, "내 위치가 성공적으로 저장 성공"),
+    LOCATION_PAUSE_SUCCESS(HttpStatus.OK, "위치 업데이트가 일시 중지 성공"),
+    LOCATION_NEARBY_SUCCESS(HttpStatus.OK, "주변 사용자의 위치를 성공적으로 조회 성공"),
+
+
     /**
      * 201 CREATED
      */

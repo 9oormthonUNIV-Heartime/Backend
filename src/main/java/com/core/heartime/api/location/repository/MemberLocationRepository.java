@@ -15,4 +15,5 @@ public interface MemberLocationRepository extends JpaRepository<MemberLocation, 
     boolean existsByMemberEmail(String memberEmail);
 
     Optional<MemberLocation> findByMemberEmail(String memberEmail);
+
 }
